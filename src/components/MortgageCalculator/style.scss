@@ -1,5 +1,282 @@
+/* Container for mortgage calculator */
 .mortgage-calculator {
     max-width: 1008px;
-    min-height: 606px;
-    // Be sure to nest any custom classes on child elements to avoid conflicts
+    display: flex;
+    background-color: #ffffff;
+    border-radius: 20px;
+    flex-direction: column;
+    align-items: stretch;
+    @media (min-width: 992px) {
+        flex-direction: row;
+    }
 }
+
+/* Form section styling */
+.form-section {
+    flex: 1;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 12px 0 0 12px;
+}
+
+/* Result container styling */
+.result-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #123041;
+    padding: 30px;
+    @media (min-width: 992px) {
+        border-radius: 0px 20px 20px 70px;
+    }
+}
+
+/* Result box styling */
+.result-box {
+    background-color: #1c2a38;
+    border-radius: 12px;
+    padding: 30px 25px;
+    color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 420px;
+    position: relative;
+}
+
+/* Result header styling */
+.result-header {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #ffffff;
+}
+
+/* Result details styling */
+.result-details {
+    font-size: 14px;
+    margin-bottom: 20px;
+    color: #d0d8e5;
+    line-height: 1.5;
+}
+
+/* Result amount styling */
+.result-amount {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #c5e04b;
+    margin-bottom: 5px;
+}
+
+/* Result summary styling */
+.result-summary {
+    margin-bottom: 15px;
+    color: #d0d8e5;
+}
+
+.total-repayment {
+    font-size: 1.5rem;
+}
+
+/* Line separating results */
+.result-line {
+    border-top: 2px solid #333d4b;
+    margin: 20px 0;
+}
+
+/* Summary strong text color */
+.result-summary strong {
+    color: #c5e04b;
+}
+
+/* Top highlight for result box */
+.result-box:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background-color: #c5e04b;
+    border-radius: 12px 12px 0 0;
+}
+
+/* Button styling for calculate */
+.btn-calculate {
+    padding: 12px 40px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #333d4b;
+    background-color: #c7d30f;
+    border-radius: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: inline-flex;
+    justify-content: space-between;
+    gap: 10px;
+    align-items: center;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+    &:hover {
+        background-color: #a3b518;
+    }
+}
+
+.btn-calculate i {
+    margin-right: 8px;
+}
+
+
+.btn-link {
+    text-decoration: underline;
+}
+
+/* Input group text styling */
+.input-group-text {
+    background-color: #e4f3fe;
+    border-radius: 4px;
+    padding: 10px 16px;
+    font-size: 16px;
+    color: #333d4b;
+    border: 1px solid #cbd5e0;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Active state for input group text */
+.input-group-text.active {
+    background-color: #c5e04b; 
+    color: #333d4b;
+    border-color: #c5e04b;
+}
+
+/* Form control styling */
+.form-control {
+    padding: 10px 16px;
+    font-size: 16px;
+    color: #333d4b;
+    border: 1px solid #cbd5e0;
+    border-radius: 4px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover state for form control */
+.form-control:hover {
+    cursor: pointer;
+}
+
+/* Focus state for form control */
+.form-control:focus {
+    border-color: #c5e04b; 
+    box-shadow: 0 0 0 0.2rem rgba(197, 224, 75, 0.25);
+}
+
+/* Error state for input group */
+.input-group.has-error .input-group-text {
+    background-color: #dc3545; 
+    color: #ffffff;
+    border: 1px solid #dc3545;
+}
+
+/* Error state for form control */
+.input-group.has-error .form-control {
+    border-color: #dc3545;
+}
+
+/* Invalid form control styling */
+.form-control.is-invalid {
+    border-color: #dc3545;
+    padding-right: calc(1.5em + 0.75rem);
+    background-repeat: no-repeat;
+    background-position: right calc(0.375em + 0.1875rem) center;
+    background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+}
+
+/* Invalid feedback styling */
+.invalid-feedback {
+    color: #dc3545;
+    font-size: 0.875em;
+    margin-top: 0.25rem;
+}
+
+/* Error input control stacking */
+.input-group .form-control.is-invalid {
+    z-index: 3;
+}
+
+/* Form check styling */
+.form-check {
+    margin-bottom: 12px;
+    position: relative;
+}
+
+/* Form check input styling */
+.form-check-input {
+    position: absolute;
+    left: 30px;
+    width: 20px;
+    height: 20px;
+    accent-color: #f1e5b2;
+    flex-shrink: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+}
+
+/* Checked state for form check input */
+.form-check-input:checked + .form-check-label {
+    background-color: rgba(197, 224, 75, 0.5); 
+    border-color: rgba(197, 224, 75, 0.5);
+    color: #333d4b; 
+}
+
+/* Checked state for form check input itself */
+.form-check-input:checked {
+    background-color: rgba(197, 224, 75, 0.5); 
+    border-color: rgba(197, 224, 75, 0.5);
+    z-index: 2; 
+}
+
+/* Styling for empty images */
+.image-empty {
+    width: 200px !important;
+    height: auto;
+}
+
+/* Form check label styling */
+.form-check-label {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    border-radius: 4px;
+    border: 1px solid #cbd5e0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #333d4b;
+    cursor: pointer;
+    width: 100%;
+    position: relative;
+    padding-left: 50px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Container for images */
+.image-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Hover effect for calculate button */
+.calculate-btn:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+/* Text styling within image container */
+.image-text {
+    color: #ffffff;
+    text-align: center;
+}
+
+
